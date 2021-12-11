@@ -1,0 +1,12 @@
+<section>
+  <div class="users" (click)="this.showSB.emit()">
+    <fa-icon [icon]="faUsers"></fa-icon>
+  </div>
+  <div class="status">
+    <input type="text" name="status" [(ngModel)]="status" />
+    <fa-icon [icon]="faPaperPlane" (click)="updateStatus()"></fa-icon>
+  </div>
+  <div class="user" *ngIf="user">
+    <img src="{{ user.picture.thumbnail }}" alt="" />
+  </div>
+</section>

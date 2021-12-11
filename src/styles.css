@@ -1,1 +1,80 @@
 /* You can add global styles to this file, and also import other style files */
+@import url("https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+/* Remove all the styles of the "User-Agent-Stylesheet", except for the 'display' property */
+*:where(:not(iframe, canvas, img, svg, video):not(svg *)) {
+  all: unset;
+  display: revert;
+}
+
+/* Preferred box-sizing value */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/*
+  Remove list styles (bullets/numbers)
+  in case you use it with normalize.css
+*/
+ol,
+ul {
+  list-style: none;
+}
+
+/* For images to not be able to exceed their container */
+img {
+  max-width: 100%;
+}
+
+/* Removes spacing between cells in tables */
+table {
+  border-collapse: collapse;
+}
+
+/* Revert the 'white-space' property for textarea elements on Safari */
+textarea {
+  white-space: revert;
+}
+/* End of CSS reset */
+
+body {
+  font-family: "Work Sans", sans-serif;
+  scroll-behavior: smooth;
+  color: var(--paragraph);
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* #dark {
+  --bg: #0f0e17;
+  --headline: #fffffe;
+  --paragraph: #a7a9be;
+  --btn_bg: #ff8906;
+  --btn_txt: #fffffe;
+  --shadow: 0 0px 6px 6px #00000033;
+  background: var(--bg);
+  color: var(--paragraph);
+} */
+
+* {
+  --bg: #fef6e4;
+  --headline: #001858;
+  --paragraph: #172c66;
+  --btn_bg: #f582ae;
+  --btn_txt: #001858;
+  --shadow: 0 3px 6px 4px #bbbbbb44;
+}
+
+::-webkit-scrollbar {
+  opacity: 0;
+  width: 0.3em;
+  height: 0;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 100vw;
+  background-color: var(--paragraph);
+}

@@ -1,0 +1,20 @@
+section {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    padding: 1rem 15rem;
+}
+
+
+.no-feed {
+    display: grid;
+    place-content: center;
+    opacity: .7;
+}
+
+@media screen and (max-width: 600px) {
+    section {
+        padding: 1rem 0;
+    }
+    
+}

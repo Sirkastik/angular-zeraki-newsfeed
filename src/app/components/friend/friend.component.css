@@ -1,0 +1,20 @@
+a {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: .8rem;
+    font-size: 1.15rem;
+    font-weight: 500;
+    padding: 0.3rem 1rem;
+    border: 1px transparent var(--bg);
+}
+
+a:hover {
+    border: 1px solid var(--bg);
+    border-radius: .25rem;
+}
+
+a > img {
+    width: 2rem;
+    border-radius: 50%;
+}

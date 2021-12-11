@@ -1,0 +1,32 @@
+.container {
+    width: 100vw;
+    height: 100vh;
+    overflow: scroll;
+}
+
+.top {
+    padding: 1.5rem;
+    display: flex;
+    justify-content: space-around;
+}
+
+.top > * {
+    box-shadow: var(--shadow);
+    border-radius: .25rem;
+    padding: .5rem 1rem;
+}
+
+.top > span {
+    pointer-events: none;
+    background: var(--paragraph);
+    color: var(--bg);
+}
+
+a {
+    cursor: pointer;
+}
+
+a:hover {
+    color: var(--bg);
+    background: var(--paragraph);
+}

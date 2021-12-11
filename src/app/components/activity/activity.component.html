@@ -1,0 +1,25 @@
+<div class="activity">
+  <div class="news">
+    <span>{{ activity.subject }} </span>
+    <span class="small">{{ activity.action }} </span>
+    <span class="small">{{ activity.pronoun }} </span>
+    <span class="small">{{ activity.object }} </span>
+  </div>
+  <div class="text" *ngIf="activity.hasOwnProperty('text')">
+    <h3>{{ activity.text }}</h3>
+  </div>
+  <div class="photo" *ngIf="activity.hasOwnProperty('link')">
+    <img src="{{ activity.link }}" alt="photo" />
+  </div>
+
+  <div class="icons">
+    <span>
+      <fa-icon [icon]="faThumbsUp"></fa-icon>
+      {{ activity.likes.length }}
+    </span>
+    <span>
+      <fa-icon [icon]="faComment"></fa-icon>
+      {{ activity.comments.length }}
+    </span>
+  </div>
+</div>

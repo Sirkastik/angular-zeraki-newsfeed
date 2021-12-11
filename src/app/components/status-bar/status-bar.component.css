@@ -1,0 +1,37 @@
+section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0;
+}
+
+.status {
+  margin: auto;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+img {
+  border-radius: 50%;
+  height: 2rem;
+  box-shadow: var(--shadow);
+  pointer-events: none;
+}
+
+input {
+  box-shadow: inset var(--shadow);
+  padding: 0.3rem 0.6rem;
+  height: 2rem;
+  border-radius: 0.25rem;
+}
+
+input:focus {
+  border: 2px solid rgba(0, 0, 255, 0.466);
+}
+
+@media screen and (min-width: 600px) {
+  .users {
+    display: none;
+  }
+}

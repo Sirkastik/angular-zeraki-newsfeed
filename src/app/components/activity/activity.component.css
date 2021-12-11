@@ -1,0 +1,39 @@
+.activity {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    box-shadow: var(--shadow);
+    border-radius: .25rem;
+    width: 100%;
+}
+
+.text {
+    text-align: center;
+}
+
+img {
+    border-radius: .25rem;
+}
+
+.small {
+    font-size: .75rem;
+    opacity: .7;
+}
+
+h3 {
+    font-size: 1.15rem;
+    font-weight: 500;
+}
+
+.icons {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    justify-content: center;
+}
+
+.icons > span {
+    cursor: pointer;
+} 

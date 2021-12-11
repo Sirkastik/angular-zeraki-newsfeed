@@ -1,0 +1,10 @@
+<div class="container">
+  <app-sidebar
+    [ngClass]="{ show: showSidebar }"
+    (hideSB)="showSidebar = false"
+  ></app-sidebar>
+  <main *ngIf="!hideMain()">
+    <app-status-bar (showSB)="showSidebar = true"></app-status-bar>
+    <app-activities></app-activities>
+  </main>
+</div>

@@ -1,0 +1,9 @@
+<section>
+  <app-activity
+    *ngFor="let activity of activities"
+    [activity]="activity"
+  ></app-activity>
+  <div class="no-feed" *ngIf="!activities[0]">
+    <h1>No Activities available</h1>
+  </div>
+</section>
