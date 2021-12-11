@@ -4,7 +4,7 @@
     (hideSB)="showSidebar = false"
   ></app-sidebar>
   <main *ngIf="!hideMain()">
-    <app-status-bar (showSB)="showSidebar = true"></app-status-bar>
-    <app-activities></app-activities>
+    <app-status-bar [user]="user" (showSB)="showSidebar = true"></app-status-bar>
+    <app-activities [user]="user"></app-activities>
   </main>
 </div>

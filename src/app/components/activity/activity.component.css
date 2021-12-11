@@ -11,6 +11,7 @@
 
 .text {
     text-align: center;
+    color: var(--headline);
 }
 
 img {

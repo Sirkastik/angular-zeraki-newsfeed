@@ -13,11 +13,11 @@
   </div>
 
   <div class="icons">
-    <span>
+    <span (click)="onLike.emit()">
       <fa-icon [icon]="faThumbsUp"></fa-icon>
       {{ activity.likes.length }}
     </span>
-    <span>
+    <span (click)="onComment.emit(comment)">
       <fa-icon [icon]="faComment"></fa-icon>
       {{ activity.comments.length }}
     </span>

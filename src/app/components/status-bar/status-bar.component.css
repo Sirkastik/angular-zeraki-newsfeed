@@ -20,6 +20,7 @@ img {
 }
 
 input {
+  font-size: .85rem;
   box-shadow: inset var(--shadow);
   padding: 0.3rem 0.6rem;
   height: 2rem;

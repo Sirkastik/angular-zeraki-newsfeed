@@ -1,10 +1,5 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import {
-  faUsers,
-  faPaperPlane,
-  faUserCircle,
-} from '@fortawesome/free-solid-svg-icons';
-import { UserService } from 'src/app/services/user.service';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { faUsers, faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 
 import { ActivityService } from 'src/app/services/activity.service';
 
@@ -18,25 +13,25 @@ import { RandomUser } from 'src/app/User';
 export class StatusBarComponent implements OnInit {
   faUsers = faUsers;
   faPaperPlane = faPaperPlane;
-  faUser = faUserCircle;
 
-  user!: RandomUser;
-  status: string = ""
+  @Input() user!: RandomUser;
+
+  status: string = '';
 
   @Output() showSB = new EventEmitter();
 
-  constructor(private userService: UserService, private activityService: ActivityService) {}
+  constructor(private activityService: ActivityService) {}
 
-  ngOnInit(): void {
-    this.userService
-      .getRandomUser()
-      .subscribe((res) => (this.user = res.results[0]));
-  }
+  ngOnInit(): void {}
 
   updateStatus() {
-    this.activityService.updateStatus(this.status, this.user.name.first).subscribe((e) => {
-      console.log(e)
-    })
-    this.status = ""
+    if (!this.status.match(/([^\s]+)/g)) {
+      return;
+    }
+    this.activityService.updateStatus(this.status, {
+      name: this.user.name.first,
+      gender: this.user.gender,
+    });
+    this.status = '';
   }
 }

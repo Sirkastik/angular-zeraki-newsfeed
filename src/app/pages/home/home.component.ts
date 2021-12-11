@@ -1,20 +1,25 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from 'src/app/services/user.service';
+import { RandomUser } from 'src/app/User';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  styleUrls: ['./home.component.css'],
 })
-
 export class HomeComponent implements OnInit {
   showSidebar: boolean = false;
+  user!: RandomUser;
 
-  constructor(private window:Window) { }
+  constructor(private userService: UserService, private window: Window) {}
 
   ngOnInit(): void {
+    this.userService
+      .getRandomUser()
+      .subscribe((res) => (this.user = res.results[0]));
   }
 
   hideMain() {
-    return this.showSidebar && this.window.innerWidth <= 600
+    return this.showSidebar && this.window.innerWidth <= 600;
   }
 }

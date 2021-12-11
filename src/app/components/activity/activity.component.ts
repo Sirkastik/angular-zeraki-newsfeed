@@ -1,8 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Activity } from '../../Activity';
 import { faThumbsUp } from '@fortawesome/free-solid-svg-icons';
 import { faComment } from '@fortawesome/free-regular-svg-icons';
-
 
 @Component({
   selector: 'app-activity',
@@ -11,6 +10,9 @@ import { faComment } from '@fortawesome/free-regular-svg-icons';
 })
 export class ActivityComponent implements OnInit {
   @Input() activity!: Activity;
+  @Output() onLike = new EventEmitter();
+  @Output() onComment = new EventEmitter();
+  comment: string = 'new comment';
 
   faThumbsUp = faThumbsUp;
   faComment = faComment;

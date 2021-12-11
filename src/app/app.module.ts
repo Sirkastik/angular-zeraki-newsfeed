@@ -9,8 +9,6 @@ import { UserFeedComponent } from './pages/user-feed/user-feed.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { FriendComponent } from './components/friend/friend.component';
 import { StatusBarComponent } from './components/status-bar/status-bar.component';
-import { DropdownComponent } from './components/dropdown/dropdown.component';
-import { ToasterComponent } from './components/toaster/toaster.component';
 import { ActivitiesComponent } from './components/activities/activities.component';
 import { ActivityComponent } from './components/activity/activity.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -23,8 +21,6 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     SidebarComponent,
     FriendComponent,
     StatusBarComponent,
-    DropdownComponent,
-    ToasterComponent,
     ActivitiesComponent,
     ActivityComponent,
   ],

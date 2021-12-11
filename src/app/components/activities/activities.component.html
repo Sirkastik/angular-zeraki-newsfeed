@@ -2,6 +2,8 @@
   <app-activity
     *ngFor="let activity of activities"
     [activity]="activity"
+    (onLike)="likeActivity(activity)"
+    (onComment)="commentActivity(activity, $event)"
   ></app-activity>
   <div class="no-feed" *ngIf="!activities[0]">
     <h1>No Activities available</h1>

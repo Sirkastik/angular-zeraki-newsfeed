@@ -5,7 +5,7 @@
 }
 
 .top {
-    padding: 1.5rem;
+    padding: 1.5rem 0;
     display: flex;
     justify-content: space-around;
 }
@@ -29,4 +29,8 @@ a {
 a:hover {
     color: var(--bg);
     background: var(--paragraph);
+}
+
+.container {
+    padding: 0 1rem;
 }

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { UserService } from 'src/app/services/user.service';
+import { RandomUser } from 'src/app/User';
 
 @Component({
   selector: 'app-user-feed',
@@ -7,9 +9,18 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./user-feed.component.css'],
 })
 export class UserFeedComponent implements OnInit {
-  constructor(private route: ActivatedRoute) {}
-  ngOnInit(): void {}
+  user!: RandomUser;
+  constructor(
+    private userService: UserService,
+    private route: ActivatedRoute
+  ) {}
+  
+  ngOnInit(): void {
+    this.userService
+      .getRandomUser()
+      .subscribe((res) => (this.user = res.results[0]));
+  }
   userName() {
-    return this.route.snapshot.params.user
+    return this.route.snapshot.params.user;
   }
 }
