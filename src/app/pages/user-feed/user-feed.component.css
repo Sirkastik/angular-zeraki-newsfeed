@@ -1,36 +1,44 @@
 .container {
-    width: 100vw;
-    height: 100vh;
-    overflow: scroll;
+  width: 100vw;
+  height: 100vh;
+  overflow: scroll;
 }
 
 .top {
-    padding: 1.5rem 0;
-    display: flex;
-    justify-content: space-around;
+  padding: 1.5rem 0;
+  display: flex;
+  justify-content: space-around;
 }
 
 .top > * {
-    box-shadow: var(--shadow);
-    border-radius: .25rem;
-    padding: .5rem 1rem;
+  background: var(--sbg);
+  border: 2px double var(--bordercolor);
+  border-radius: 0.25rem;
+  padding: 0.5rem 1rem;
 }
 
 .top > span {
-    pointer-events: none;
-    background: var(--paragraph);
-    color: var(--bg);
+  color: #fff;
+  pointer-events: none;
 }
 
 a {
-    cursor: pointer;
+  color: var(--sbcolor);
+  cursor: pointer;
 }
 
 a:hover {
-    color: var(--bg);
-    background: var(--paragraph);
+  color: #fff;
 }
 
 .container {
+  padding: 0 15rem;
+  padding-bottom: 2rem;
+}
+
+@media screen and (max-width: 600px) {
+  .container {
     padding: 0 1rem;
+    padding-bottom: 2rem;
+  }
 }

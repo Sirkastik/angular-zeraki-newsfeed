@@ -43,10 +43,11 @@ export class ActivityService {
       action: 'liked',
       pronoun: `${activity.subject}'s`,
       object: activity.object,
-      date: Date.now().toString(),
+      date: Date.now(),
       likes: [],
       comments: [],
     };
+    
     this.http
       .post<Activity>(this.apiUrl, likeActivity, httpOptions)
       .subscribe((activity) => {
@@ -67,7 +68,7 @@ export class ActivityService {
       pronoun: `${activity.subject}'s`,
       object: activity.object,
       text: comment,
-      date: Date.now().toString(),
+      date: Date.now(),
       likes: [],
       comments: [],
     };
@@ -89,7 +90,7 @@ export class ActivityService {
       pronoun: subject.gender === 'male' ? 'his' : 'her',
       object: 'status',
       text: status,
-      date: Date.now().toString(),
+      date: Date.now(),
       likes: [],
       comments: [],
     };

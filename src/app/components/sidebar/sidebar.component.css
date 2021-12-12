@@ -1,36 +1,39 @@
 section {
   text-align: center;
-  color: var(--bg);
+  color: var(--sbcolor);
   height: 100vh;
-  padding: 0.5rem;
+  padding: 1.5rem;
 }
 
 h3 {
+  border: 1px solid var(--bordercolor);
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: 600;
   font-size: 1.15rem;
-  gap: 0.5rem;
-  padding: .8rem 2rem;
-  box-shadow: 0 3px 6px 4px rgba(0, 0, 0, 0.144);
+  gap: 0.9rem;
+  padding: .8rem 1.5rem;
+  margin-bottom: 1rem;
   border-radius: 0.5rem;
 }
 
 fa-icon:nth-child(3) {
   margin-left: auto;
 }
+fa-icon:nth-child(3):hover {
+  color: #fff;
+}
 
 .list {
-  background: var(--headline);
-  height: 100%;
-  width: 100%;
+  background: var(--sbg);
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  gap: 1.2rem;
-  border-radius: 0.25rem;
-  padding: 0 1.5rem;
+  gap: .5rem;
+  width: 100%;
+  height: 100%;
+  border: 2px double var(--bordercolor);
+  border-radius: .5rem;
 }
 
 @media screen and (min-width: 600px) {

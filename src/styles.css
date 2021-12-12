@@ -42,30 +42,19 @@ textarea {
 body {
   font-family: "Work Sans", sans-serif;
   scroll-behavior: smooth;
-  color: var(--paragraph);
+  color: var(--mainbg);
+  background: var(--mainbg);
   width: 100vw;
   height: 100vh;
   overflow: hidden;
 }
 
-/* #dark {
-  --bg: #0f0e17;
-  --headline: #fffffe;
-  --paragraph: #a7a9be;
-  --btn_bg: #ff8906;
-  --btn_txt: #fffffe;
-  --shadow: 0 0px 6px 6px #00000033;
-  background: var(--bg);
-  color: var(--paragraph);
-} */
-
 * {
-  --bg: #fef6e4;
-  --headline: #001858;
-  --paragraph: #172c66;
-  --btn_bg: #f582ae;
-  --btn_txt: #001858;
-  --shadow: 0 3px 6px 4px #bbbbbb44;
+  --mainbg: #1a1d31;
+  --sbg: #1d1f31;
+  --sbcolor: #8e8f98;
+  --bordercolor: #2a2c3d;
+  --accent-color: #847cff;
 }
 
 ::-webkit-scrollbar {
@@ -76,5 +65,5 @@ body {
 
 ::-webkit-scrollbar-thumb {
   border-radius: 100vw;
-  background-color: var(--paragraph);
+  background-color: var(--sbcolor);
 }

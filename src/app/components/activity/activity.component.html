@@ -1,9 +1,11 @@
 <div class="activity">
   <div class="news">
-    <span>{{ activity.subject }} </span>
+    <span class="user"><fa-icon [icon]="faUserCircle"></fa-icon></span>
+    <span class="subject">{{ activity.subject }} </span>
     <span class="small">{{ activity.action }} </span>
-    <span class="small">{{ activity.pronoun }} </span>
-    <span class="small">{{ activity.object }} </span>
+    <span class="subject">{{ activity.pronoun }} </span>
+    <span class="subject">{{ activity.object }} </span>
+    <span class="time">{{ time(activity.date) }} {{day(activity.date)}} {{ date(activity.date) }}</span>
   </div>
   <div class="text" *ngIf="activity.hasOwnProperty('text')">
     <h3>{{ activity.text }}</h3>

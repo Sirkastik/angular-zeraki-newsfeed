@@ -6,7 +6,7 @@
 }
 
 app-sidebar {
-  width: 18%;
+  width: 25%;
 }
 
 main {
@@ -14,6 +14,10 @@ main {
   height: 100vh;
   overflow: scroll;
   padding: 0 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 1.5rem;
 }
 
 @media screen and (max-width: 600px) {

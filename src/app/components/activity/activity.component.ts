@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Activity } from '../../Activity';
-import { faThumbsUp } from '@fortawesome/free-solid-svg-icons';
-import { faComment } from '@fortawesome/free-regular-svg-icons';
+import { faUserAlt } from '@fortawesome/free-solid-svg-icons';
+import { faComment, faThumbsUp } from '@fortawesome/free-regular-svg-icons';
 
 @Component({
   selector: 'app-activity',
@@ -16,8 +16,21 @@ export class ActivityComponent implements OnInit {
 
   faThumbsUp = faThumbsUp;
   faComment = faComment;
+  faUserCircle = faUserAlt;
 
   constructor() {}
 
   ngOnInit(): void {}
+
+  time(date: number): string {
+    return new Date(date).toLocaleTimeString()
+  }
+
+  day(date: number): string {
+    return new Date(date).toString().split(" ")[0]
+  }
+
+  date(date: number): string {
+    return new Date(date).toString().split(" ")[2]
+  }
 }
