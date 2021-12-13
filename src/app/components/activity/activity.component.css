@@ -1,5 +1,5 @@
 .activity {
-  background: #fff; 
+  background: #fff;
   padding: 1rem;
   display: flex;
   flex-direction: column;
@@ -7,8 +7,7 @@
   border-bottom: 1px double #dfdfe6;
   width: 100%;
   padding-bottom: 3rem;
-    border-radius: 0.5rem;
-
+  border-radius: 0.5rem;
 }
 
 .text {
@@ -37,7 +36,7 @@ img {
   font-weight: 500;
 }
 
-.user {
+.news > .user {
   color: #847cff;
   background: #ebeaff;
   font-size: 0.6rem;
@@ -82,6 +81,104 @@ h3 {
   color: var(--accent-color);
 }
 
+#container {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  padding: 3rem 20vw;
+  background: #1a1d31c7;
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+}
+
+#container > fa-icon {
+  margin-left: auto;
+  margin-bottom: 0.5rem;
+  cursor: pointer;
+  display: grid;
+  place-content: center;
+  height: 1.7rem;
+  width: 1.7rem;
+  text-align: right;
+  border-radius: 50%;
+  padding: 0.3rem;
+  color: var(--accent-color);
+  background: white;
+}
+
+#container > fa-icon:hover {
+  color: black;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.3rem;
+  background: white;
+  padding: 2rem;
+  border-radius: 0.5rem;
+  flex: 1;
+}
+
+.form > fa-icon {
+  width: max-content;
+  cursor: pointer;
+  margin-left: auto;
+  color: var(--accent-color);
+}
+
+.form > fa-icon:hover {
+  color: black;
+}
+
+textarea {
+  padding: 0.75rem;
+  border-radius: 0.25rem;
+  background: rgba(128, 128, 128, 0.07);
+  border: 1px solid #dfdfe6;
+  box-shadow: inset 0 -1px 1px 1px rgba(128, 128, 128, 0.125);
+}
+
+textarea:focus {
+  border: 2px solid var(--accent-color);
+  box-shadow: none;
+}
+
+.comments {
+  background: #ebeaff;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  overflow: scroll;
+}
+
+.comment {
+  padding: .5rem 0;
+  border-bottom: 1px solid rgba(128, 128, 128, 0.158);
+}
+
+.comment > .user {
+  color: #ebeaff;
+  background: #847cff;
+  font-size: 0.6rem;
+  padding: 0.5rem;
+  border-radius: 50%;
+  margin-right: .3rem;
+}
+
+.bold {
+  font-weight: 600;
+}
+
+.italic {
+  font-size: .9rem;
+  font-style: italic;
+}
+
 @media screen and (max-width: 600px) {
   .activity {
     padding-bottom: 2rem;
@@ -96,5 +193,9 @@ h3 {
 
   .photo {
     padding: 0.5rem;
+  }
+
+  #container {
+    padding: 1rem 2rem;
   }
 }

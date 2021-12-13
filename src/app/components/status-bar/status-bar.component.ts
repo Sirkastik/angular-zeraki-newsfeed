@@ -25,6 +25,7 @@ export class StatusBarComponent implements OnInit {
   ngOnInit(): void {}
 
   updateStatus() {
+    // *make sure status is not an empty string
     if (!this.status.match(/([^\s]+)/g)) {
       return;
     }

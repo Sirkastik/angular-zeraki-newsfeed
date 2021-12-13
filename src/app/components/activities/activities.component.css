@@ -1,26 +1,25 @@
 section {
-    background: #fff;
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-    padding: 2.5rem;
-    padding-bottom: 0;
-    border-radius: .5rem;
-    color: black;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 2.5rem;
+  padding-bottom: 0;
+  border-radius: 0.5rem;
+  color: black;
 }
 
-
 .no-feed {
-    display: grid;
-    place-content: center;
-    opacity: .7;
-    padding-bottom: 2rem;
+  display: grid;
+  place-content: center;
+  opacity: 0.7;
+  padding-bottom: 2rem;
 }
 
 @media screen and (max-width: 600px) {
-    section {
-        gap: 1rem; 
-        background: none;
-        padding: 0;
-    }
+  section {
+    gap: 0.75rem;
+    background: none;
+    padding: 0;
+  }
 }

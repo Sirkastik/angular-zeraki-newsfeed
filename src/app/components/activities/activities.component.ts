@@ -19,9 +19,14 @@ export class ActivitiesComponent implements OnInit {
     private activityService: ActivityService,
     private route: ActivatedRoute
   ) {
+    // *subscribe to any changes made to the activities
     this.subscription = this.activityService
       .onNewActivity()
-      .subscribe((activity) => this.activities.unshift(activity));
+      .subscribe((activity) => {
+        if (this.route.snapshot.routeConfig?.path !== 'user-feed/:user') {
+          this.activities.unshift(activity);
+        }
+      });
   }
 
   ngOnInit(): void {
@@ -37,11 +42,13 @@ export class ActivitiesComponent implements OnInit {
     }
   }
 
+  // *like an activity
   likeActivity(activity: Activity) {
     activity.likes.push(this.user.name.first);
     this.activityService.likeActivity(activity);
   }
 
+  // *comment on an activity
   commentActivity(activity: Activity, comment: string) {
     const newComment = {
       user: this.user.name.first,

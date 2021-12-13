@@ -14,6 +14,7 @@ export class HomeComponent implements OnInit {
   constructor(private userService: UserService, private window: Window) {}
 
   ngOnInit(): void {
+    // get random users from api
     this.userService
       .getRandomUser()
       .subscribe((res) => (this.user = res.results[0]));

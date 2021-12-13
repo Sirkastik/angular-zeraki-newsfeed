@@ -7,7 +7,7 @@ export interface Activity {
   text?: string;
   date: number;
   likes: Array<string>;
-  comments: Array<Comment>;
+  comments: Comment[];
   id?: number;
 }
 

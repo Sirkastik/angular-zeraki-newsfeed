@@ -25,10 +25,12 @@ export class UserService {
 
   constructor(private http: HttpClient) {}
 
+  // get friends' list
   getUsers(): Observable<RandomUser[]> {
     return this.http.get<RandomUser[]>(`${this.apiUrl}/users`, httpOptions);
   }
 
+  // get random user
   getRandomUser(): Observable<Response> {
     return this.http.get<Response>('https://randomuser.me/api');
   }

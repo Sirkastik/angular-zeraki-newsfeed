@@ -5,7 +5,10 @@
     <span class="small">{{ activity.action }} </span>
     <span class="subject">{{ activity.pronoun }} </span>
     <span class="subject">{{ activity.object }} </span>
-    <span class="time">{{ time(activity.date) }} {{day(activity.date)}} {{ date(activity.date) }}</span>
+    <span class="time"
+      >{{ time(activity.date) }} {{ day(activity.date) }}
+      {{ date(activity.date) }}</span
+    >
   </div>
   <div class="text" *ngIf="activity.hasOwnProperty('text')">
     <h3>{{ activity.text }}</h3>
@@ -19,9 +22,30 @@
       <fa-icon [icon]="faThumbsUp"></fa-icon>
       {{ activity.likes.length }}
     </span>
-    <span (click)="onComment.emit(comment)">
+    <span (click)="showComments = true">
       <fa-icon [icon]="faComment"></fa-icon>
       {{ activity.comments.length }}
     </span>
+  </div>
+</div>
+
+<div id="container" *ngIf="showComments" (click)="hideComments($event)">
+  <fa-icon [icon]="faTimes" (click)="showComments = false"></fa-icon>
+  <div class="form">
+    <textarea
+      name="comment"
+      [(ngModel)]="comment"
+      cols="30"
+      rows="3"
+      placeholder="Enter your comment here..."
+    ></textarea>
+    <fa-icon [icon]="faPaperPlane" (click)="addComment()"></fa-icon>
+    <div class="comments">
+      <div class="comment" *ngFor="let comment of activity.comments">
+        <span class="user"><fa-icon [icon]="faUserCircle"></fa-icon></span>
+        <span class="bold">{{ comment.user }}: </span>
+        <span class="italic"> {{ comment.comment }}</span>
+      </div>
+    </div>
   </div>
 </div>

@@ -21,10 +21,16 @@ export class ActivityService {
 
   constructor(private http: HttpClient) {}
 
+  // *GET
+  // *Returns All Activities
+  // *token in httpOptions
   getActivities(): Observable<Activity[]> {
     return this.http.get<Activity[]>(this.apiUrl, httpOptions);
   }
 
+  // *GET
+  // *Returns User Activities
+  // *token in httpOptions
   getUserActivities(userName: string): Observable<Activity[]> {
     return this.http.get<Activity[]>(
       `${this.apiUrl}/?subject=${userName}`,
@@ -32,12 +38,18 @@ export class ActivityService {
     );
   }
 
+  // *PUT & POST
+  // *PUT modifies activity to add like
+  // *POST Returns new like Activity
+  // *token in httpOptions
   likeActivity(activity: Activity): void {
+    // like
     this.http.put<Activity>(
       `${this.apiUrl}/${activity.id}`,
       activity,
       httpOptions
-    );
+    ).subscribe()
+    // new activity: like
     const likeActivity: Activity = {
       subject: activity.likes[activity.likes.length - 1],
       action: 'liked',
@@ -47,7 +59,7 @@ export class ActivityService {
       likes: [],
       comments: [],
     };
-    
+    // new like activity
     this.http
       .post<Activity>(this.apiUrl, likeActivity, httpOptions)
       .subscribe((activity) => {
@@ -56,12 +68,18 @@ export class ActivityService {
       });
   }
 
+  // *PUT & POST
+  // *PUT modifies activity to add comment
+  // *POST Returns new comment Activity
+  // *token in httpOptions
   commentActivity(activity: Activity, comment: string): void {
+    // comment added
     this.http.put<Activity>(
       `${this.apiUrl}/${activity.id}`,
       activity,
       httpOptions
-    );
+    ).subscribe()
+    // new activity: comment
     const commentActivity: Activity = {
       subject: activity.comments[activity.comments.length - 1].user,
       action: 'commented on',
@@ -72,6 +90,7 @@ export class ActivityService {
       likes: [],
       comments: [],
     };
+    // new comment activity
     this.http
       .post<Activity>(this.apiUrl, commentActivity, httpOptions)
       .subscribe((activity) => {
@@ -80,6 +99,9 @@ export class ActivityService {
       });
   }
 
+  // *POST
+  // *Returns new addStatus Activity
+  // *token in httpOptions
   updateStatus(
     status: string,
     subject: { name: string; gender: string }
@@ -94,6 +116,7 @@ export class ActivityService {
       likes: [],
       comments: [],
     };
+    // Add Status
     this.http
       .post<Activity>(this.apiUrl, activity, httpOptions)
       .subscribe((activity) => {
@@ -102,6 +125,7 @@ export class ActivityService {
       });
   }
 
+  // *function to update subject
   onNewActivity(): Observable<Activity> {
     return this.subject.asObservable();
   }
