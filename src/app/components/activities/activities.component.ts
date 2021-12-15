@@ -23,6 +23,7 @@ export class ActivitiesComponent implements OnInit {
     this.subscription = this.activityService
       .onNewActivity()
       .subscribe((activity) => {
+        // *add new activity if you're in the home route
         if (this.route.snapshot.routeConfig?.path !== 'user-feed/:user') {
           this.activities.unshift(activity);
         }
@@ -44,17 +45,22 @@ export class ActivitiesComponent implements OnInit {
 
   // *like an activity
   likeActivity(activity: Activity) {
+    const likedActivity = activity;
+    likedActivity.likes.push(this.user.name.first);
+    // update server
+    this.activityService.likeActivity(likedActivity);
+    // update client side after server
     activity.likes.push(this.user.name.first);
-    this.activityService.likeActivity(activity);
   }
 
   // *comment on an activity
   commentActivity(activity: Activity, comment: string) {
-    const newComment = {
-      user: this.user.name.first,
-      comment: comment,
-    };
+    const commentedActivity = activity;
+    const newComment = { user: this.user.name.first, comment: comment };
+    commentedActivity.comments.push(newComment);
+    // update server
+    this.activityService.commentActivity(commentedActivity, comment);
+    // update client side after server
     activity.comments.push(newComment);
-    this.activityService.commentActivity(activity, comment);
   }
 }

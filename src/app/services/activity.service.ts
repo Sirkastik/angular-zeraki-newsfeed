@@ -44,11 +44,9 @@ export class ActivityService {
   // *token in httpOptions
   likeActivity(activity: Activity): void {
     // like
-    this.http.put<Activity>(
-      `${this.apiUrl}/${activity.id}`,
-      activity,
-      httpOptions
-    ).subscribe()
+    this.http
+      .put<Activity>(`${this.apiUrl}/${activity.id}`, activity, httpOptions)
+      .subscribe();
     // new activity: like
     const likeActivity: Activity = {
       subject: activity.likes[activity.likes.length - 1],
@@ -74,11 +72,9 @@ export class ActivityService {
   // *token in httpOptions
   commentActivity(activity: Activity, comment: string): void {
     // comment added
-    this.http.put<Activity>(
-      `${this.apiUrl}/${activity.id}`,
-      activity,
-      httpOptions
-    ).subscribe()
+    this.http
+      .put<Activity>(`${this.apiUrl}/${activity.id}`, activity, httpOptions)
+      .subscribe();
     // new activity: comment
     const commentActivity: Activity = {
       subject: activity.comments[activity.comments.length - 1].user,

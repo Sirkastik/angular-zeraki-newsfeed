@@ -1,6 +1,12 @@
 <section>
   <div class="list">
-    <h3><span>Friends</span> <fa-icon [icon]="faUsers"></fa-icon> <fa-icon [icon]="faTimes" (click)="this.hideSB.emit()"></fa-icon></h3>
-    <app-friend *ngFor="let friend of friends" [friend]="friend"></app-friend>
+    <h3>
+      <span>Friends</span> <fa-icon [icon]="faUsers"></fa-icon>
+      <fa-icon [icon]="faTimes" (click)="this.hideSB.emit()"></fa-icon>
+    </h3>
+    <app-friend
+      *ngFor="let friend of friends$ | async"
+      [friend]="friend"
+    ></app-friend>
   </div>
 </section>

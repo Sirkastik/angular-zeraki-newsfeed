@@ -2,6 +2,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
 import { RandomUser } from 'src/app/User';
 import { faUsers, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { Observable } from 'rxjs'
 
 @Component({
   selector: 'app-sidebar',
@@ -12,10 +13,10 @@ export class SidebarComponent implements OnInit {
   @Output() hideSB = new EventEmitter();
   faUsers = faUsers;
   faTimes = faTimes;
-  friends: RandomUser[] = [];
+  friends$!: Observable<RandomUser[]>;
   constructor(private userService: UserService) {}
 
   ngOnInit(): void {
-    this.userService.getUsers().subscribe((users) => (this.friends = users));
+    this.friends$ = this.userService.getUsers();
   }
 }

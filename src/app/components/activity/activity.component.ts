@@ -29,6 +29,7 @@ export class ActivityComponent implements OnInit {
 
   ngOnInit(): void {}
 
+  // TODO: Generate a pipe to handle date/time/day formatting
   // *Functions to format date
   time(date: number): string {
     return new Date(date).toLocaleTimeString();
@@ -42,7 +43,8 @@ export class ActivityComponent implements OnInit {
 
   addComment() {
     // *Making sure the comment is not an empty string
-    if (!this.comment.match(/([^\s]+)/g)) {
+    if (!this.comment.trim()) {
+      this.comment = '';
       return;
     }
     this.onComment.emit(this.comment);

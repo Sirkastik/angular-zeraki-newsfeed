@@ -26,7 +26,8 @@ export class StatusBarComponent implements OnInit {
 
   updateStatus() {
     // *make sure status is not an empty string
-    if (!this.status.match(/([^\s]+)/g)) {
+    if (!this.status.trim()) {
+      this.status = '';
       return;
     }
     this.activityService.updateStatus(this.status, {
