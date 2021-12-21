@@ -1,11 +1,11 @@
 <section>
   <app-activity
-    *ngFor="let activity of activities"
+    *ngFor="let activity of activities$ | async"
     [activity]="activity"
     (onLike)="likeActivity(activity)"
     (onComment)="commentActivity(activity, $event)"
   ></app-activity>
-  <div class="no-feed" *ngIf="!activities[0]">
+  <div class="no-feed" *ngIf="!(activities$ | async)">
     <h1>No Activities available</h1>
   </div>
 </section>

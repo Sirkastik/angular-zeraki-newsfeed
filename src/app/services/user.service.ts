@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
 
 // user interface from database
 import { RandomUser } from '../User';
@@ -27,7 +28,9 @@ export class UserService {
 
   // get friends' list
   getUsers(): Observable<RandomUser[]> {
-    return this.http.get<RandomUser[]>(`${this.apiUrl}/users`, httpOptions);
+    return this.http
+      .get<RandomUser[]>(`${this.apiUrl}/users`, httpOptions)
+      .pipe(tap((friends) => friends.reverse()));
   }
 
   // get random user

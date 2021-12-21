@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, Subject } from 'rxjs';
-
+import { Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
 import { Activity } from '../Activity';
 
 const httpOptions = {
@@ -16,26 +16,15 @@ const httpOptions = {
 export class ActivityService {
   private apiUrl = 'https://mock-json-server-service.herokuapp.com/activities';
 
-  private newAct!: Activity;
-  private subject = new Subject<Activity>();
-
   constructor(private http: HttpClient) {}
 
   // *GET
-  // *Returns All Activities
+  // *Returns All Activities and sorts according to date
   // *token in httpOptions
   getActivities(): Observable<Activity[]> {
-    return this.http.get<Activity[]>(this.apiUrl, httpOptions);
-  }
-
-  // *GET
-  // *Returns User Activities
-  // *token in httpOptions
-  getUserActivities(userName: string): Observable<Activity[]> {
-    return this.http.get<Activity[]>(
-      `${this.apiUrl}/?subject=${userName}`,
-      httpOptions
-    );
+    return this.http
+      .get<Activity[]>(this.apiUrl, httpOptions)
+      .pipe(tap((activities) => activities.sort((a, b) => b.date - a.date)));
   }
 
   // *PUT & POST
@@ -47,8 +36,8 @@ export class ActivityService {
     this.http
       .put<Activity>(`${this.apiUrl}/${activity.id}`, activity, httpOptions)
       .subscribe();
-    // new activity: like
-    const likeActivity: Activity = {
+    // new activity: LIKE
+    const LIKE: Activity = {
       subject: activity.likes[activity.likes.length - 1],
       action: 'liked',
       pronoun: `${activity.subject}'s`,
@@ -58,12 +47,7 @@ export class ActivityService {
       comments: [],
     };
     // new like activity
-    this.http
-      .post<Activity>(this.apiUrl, likeActivity, httpOptions)
-      .subscribe((activity) => {
-        this.newAct = activity;
-        this.subject.next(this.newAct);
-      });
+    this.http.post<Activity>(this.apiUrl, LIKE, httpOptions).subscribe();
   }
 
   // *PUT & POST
@@ -75,8 +59,8 @@ export class ActivityService {
     this.http
       .put<Activity>(`${this.apiUrl}/${activity.id}`, activity, httpOptions)
       .subscribe();
-    // new activity: comment
-    const commentActivity: Activity = {
+    // new activity: COMMENT
+    const COMMENT: Activity = {
       subject: activity.comments[activity.comments.length - 1].user,
       action: 'commented on',
       pronoun: `${activity.subject}'s`,
@@ -87,12 +71,7 @@ export class ActivityService {
       comments: [],
     };
     // new comment activity
-    this.http
-      .post<Activity>(this.apiUrl, commentActivity, httpOptions)
-      .subscribe((activity) => {
-        this.newAct = activity;
-        this.subject.next(this.newAct);
-      });
+    this.http.post<Activity>(this.apiUrl, COMMENT, httpOptions).subscribe();
   }
 
   // *POST
@@ -102,7 +81,7 @@ export class ActivityService {
     status: string,
     subject: { name: string; gender: string }
   ): void {
-    const activity: Activity = {
+    const ACTIVITY: Activity = {
       subject: subject.name,
       action: 'updated',
       pronoun: subject.gender === 'male' ? 'his' : 'her',
@@ -113,16 +92,6 @@ export class ActivityService {
       comments: [],
     };
     // Add Status
-    this.http
-      .post<Activity>(this.apiUrl, activity, httpOptions)
-      .subscribe((activity) => {
-        this.newAct = activity;
-        this.subject.next(this.newAct);
-      });
-  }
-
-  // *function to update subject
-  onNewActivity(): Observable<Activity> {
-    return this.subject.asObservable();
+    this.http.post<Activity>(this.apiUrl, ACTIVITY, httpOptions).subscribe();
   }
 }

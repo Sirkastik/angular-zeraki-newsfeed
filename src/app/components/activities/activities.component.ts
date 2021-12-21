@@ -2,7 +2,8 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Activity } from '../../Activity';
 import { ActivityService } from 'src/app/services/activity.service';
-import { Subscription } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
+import { switchMap, map } from 'rxjs/operators';
 import { RandomUser } from 'src/app/User';
 
 @Component({
@@ -12,35 +13,26 @@ import { RandomUser } from 'src/app/User';
 })
 export class ActivitiesComponent implements OnInit {
   @Input() user!: RandomUser;
-  activities: Activity[] = [];
-  subscription!: Subscription;
+  activities$!: Observable<Activity[]>;
+  refreshActivities$ = new BehaviorSubject<any>(null);
 
   constructor(
     private activityService: ActivityService,
     private route: ActivatedRoute
-  ) {
-    // *subscribe to any changes made to the activities
-    this.subscription = this.activityService
-      .onNewActivity()
-      .subscribe((activity) => {
-        // *add new activity if you're in the home route
-        if (this.route.snapshot.routeConfig?.path !== 'user-feed/:user') {
-          this.activities.unshift(activity);
-        }
-      });
-  }
+  ) {}
 
   ngOnInit(): void {
     const params = this.route.snapshot.params;
-    if (params.hasOwnProperty('user')) {
-      this.activityService
-        .getUserActivities(params.user)
-        .subscribe((activities) => (this.activities = activities));
-    } else {
-      this.activityService
-        .getActivities()
-        .subscribe((activities) => (this.activities = activities.reverse()));
-    }
+    this.activities$ = this.refreshActivities$.pipe(
+      switchMap(() => this.activityService.getActivities()),
+      map((activities) => {
+        if (params.hasOwnProperty('user')) {
+          return activities.filter(
+            (activity) => activity.subject === params.user
+          );
+        } else return activities;
+      })
+    );
   }
 
   // *like an activity
@@ -50,7 +42,7 @@ export class ActivitiesComponent implements OnInit {
     // update server
     this.activityService.likeActivity(likedActivity);
     // update client side after server
-    activity.likes.push(this.user.name.first);
+    this.refreshActivities$.next(activity);
   }
 
   // *comment on an activity
@@ -61,6 +53,6 @@ export class ActivitiesComponent implements OnInit {
     // update server
     this.activityService.commentActivity(commentedActivity, comment);
     // update client side after server
-    activity.comments.push(newComment);
+    this.refreshActivities$.next(activity);
   }
 }
