@@ -3,7 +3,7 @@ import { faUsers, faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 
 import { ActivityService } from 'src/app/services/activity.service';
 
-import { RandomUser } from 'src/app/User';
+import { RandomUser } from 'src/app/models/User';
 
 @Component({
   selector: 'app-status-bar',

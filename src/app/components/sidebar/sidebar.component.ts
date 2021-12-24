@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
-import { RandomUser } from 'src/app/User';
+import { RandomUser } from 'src/app/models/User';
 import { faUsers, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { Observable } from 'rxjs'
 

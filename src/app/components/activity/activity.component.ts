@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Activity } from '../../Activity';
+import { Activity } from '../../models/Activity';
 import {
   faUserAlt,
   faPaperPlane,

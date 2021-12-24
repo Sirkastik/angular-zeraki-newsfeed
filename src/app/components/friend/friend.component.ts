@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 
-import { RandomUser } from 'src/app/User';
+import { RandomUser } from 'src/app/models/User';
 
 @Component({
   selector: 'app-friend',

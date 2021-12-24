@@ -1,10 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Activity } from '../../Activity';
+import { Activity } from '../../models/Activity';
 import { ActivityService } from 'src/app/services/activity.service';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { switchMap, map } from 'rxjs/operators';
-import { RandomUser } from 'src/app/User';
+import { RandomUser } from 'src/app/models/User';
 
 @Component({
   selector: 'app-activities',
@@ -14,7 +14,7 @@ import { RandomUser } from 'src/app/User';
 export class ActivitiesComponent implements OnInit {
   @Input() user!: RandomUser;
   activities$!: Observable<Activity[]>;
-  refreshActivities$ = new BehaviorSubject<any>(null);
+  refreshActivities$ = new BehaviorSubject<null | Activity>(null);
 
   constructor(
     private activityService: ActivityService,
@@ -24,8 +24,8 @@ export class ActivitiesComponent implements OnInit {
   ngOnInit(): void {
     const params = this.route.snapshot.params;
     this.activities$ = this.refreshActivities$.pipe(
-      switchMap(() => this.activityService.getActivities()),
-      map((activities) => {
+      switchMap((_) => this.activityService.getActivities()),
+      map((activities: Activity[]) => {
         if (params.hasOwnProperty('user')) {
           return activities.filter(
             (activity) => activity.subject === params.user
@@ -37,21 +37,19 @@ export class ActivitiesComponent implements OnInit {
 
   // *like an activity
   likeActivity(activity: Activity) {
-    const likedActivity = activity;
-    likedActivity.likes.push(this.user.name.first);
+    activity.likes.push(this.user.name.first);
     // update server
-    this.activityService.likeActivity(likedActivity);
+    this.activityService.likeActivity(activity)
     // update client side after server
     this.refreshActivities$.next(activity);
   }
 
   // *comment on an activity
   commentActivity(activity: Activity, comment: string) {
-    const commentedActivity = activity;
     const newComment = { user: this.user.name.first, comment: comment };
-    commentedActivity.comments.push(newComment);
+    activity.comments.push(newComment);
     // update server
-    this.activityService.commentActivity(commentedActivity, comment);
+    this.activityService.commentActivity(activity, comment);
     // update client side after server
     this.refreshActivities$.next(activity);
   }

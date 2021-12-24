@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
 // user interface from database
-import { RandomUser } from '../User';
+import { RandomUser } from '../models/User';
 
 // Response interface from randomuser.me api
 interface Response {

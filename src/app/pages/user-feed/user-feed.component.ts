@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
-import { RandomUser } from 'src/app/User';
+import { RandomUser } from 'src/app/models/User';
 
 @Component({
   selector: 'app-user-feed',
